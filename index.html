@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>3D初心者がARアプリ開発に参加した話</title>
+    <link rel="stylesheet" type="text/css" href="build/build.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.0.10/font-awesome-animation.css">
+  </head>
+  <body>
+    <article class="deck">
+      <section>
+        <h2>3D初心者がARアプリ開発に参加した話<br/><br/></h2>
+        <h4>2019/03/16</h4><div style="position: absolute;bottom: 10px;right: 10px"><i class="far fa-hand-point-right"></i></div>
+      </section>
+      <section>
+        <h2>自己紹介<br/><br/></h2><image src="images/27805556.png" height="100" width="100"/>
+        <h4>お名前：寺原　歩　　 　　 　　　　　　　　　　　　　　　　</h4>
+        <h4>お会社：<a href="https://www.is-tech.co.jp/">(株)情報戦略テクノロジー<image src="images/ist_logo.png" height="20" width="20"/>　　　 　　　　　　 　 　</a></h4>
+        <h4>お所属：技術戦略推進部　　　　　　　　　　　　　　 　　 　</h4>
+        <h4>得意言語：JavaScript（React + Nodeでなんでも作るぞう）　</h4>
+        <h4><i class="fab fa-github">GitHub：</i>a-terarara　　　　　　　　　　　　　　　　　 　</h4><br/><br/><br/>　　　　　　　　　　　　　　　　　　
+<div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+      </section>
+      <section>
+        <h1>今日話すこと<br/><br/></h1>
+        <ul class="build build-items">
+          <li><h2>1. ARを触れるまで　　　</h2></li>
+          <li><h2>2. ARについて　　　　　</h2></li>
+          <li><h2>3. DEMO(実機デバッグ)　</h2></li>
+        </ul><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+      </section>
+      <section>
+        <h2>経歴</h2>
+        <h3><b>前職時代　　　　　　　　　　　　　　　　　</b></h3>
+        <h4>・WEBサービスメインに保守案件を転々とする。　　 　　 　</h4>
+        <h4>・Cobol / C / Java6 / VB.Net等を触るも、得意言語は<font color="red">Excel！</font></h4>
+        <h4><br/><br/><br/>⇒転職する</h4><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+      </section>
+      <section>
+        <h2>経歴</h2>
+        <h3><b>IST時代　　　　　　　　　　　　　　　　　</b></h3>
+        <h4>・データ分析　　　　　　　　　　　　　　　　　　　　　</h4>
+        <h4>・ほにゃららPayのWebAPI開発　　　　 　　　　　　　　</h4>
+        <h4>⇒JavaScriptとの出会い　　　　　　　　　　　　　</h4>
+        <h4>・銀行APIの開発　　　　　　　　　　　　　　　　　　 　</h4>
+        <h4>・ARアプリの開発　　　　　　　　　　　　　　　　 　 　</h4><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+      </section>
+      <section>
+        <h1>おや？</h1><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+      </section>
+      <section>
+        <h1>3Dどころか<br/>ネイティブアプリやったことなくね？</h1><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+      </section>
+      <section>
+        <h1>開発体制<br/></h1>
+        <ul class="build build-items">
+          <li><h2>わたし</h2></li>
+          <li><h2>ネイティブばりばりの3D未経験者</h2></li>
+          <li><h2>以上</h2></li>
+        </ul><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+      </section>
+      <section><img src="images/shoshinsya.jpg" height="400" width="500"></section>
+      <section>
+        <h2>そんな3D初心者が３ヵ月でARをマスターするお話</h2>
+      </section>
+      <section>
+        <h1>ARについて<br><br></h1>
+        <h3>拡張現実（Augmented Reality）</h3>
+        <h3>現実世界をコンピューティングで拡張する技術</h3>
+      </section>
+      <section>
+        <h2>カメラ使っていたら大体AR</h2><img src="images/mapping.jpg" height="150" width="230"><img src="images/pokego.jpg" height="150" width="230">
+      </section>
+      <section>
+        <h2>ARの主要技術</h2>
+        <table id="desc">
+          <tr>
+            <th>ジャンル</th>
+            <th>概要</th>
+          </tr>
+          <tr>
+            <td>位置認識</td>
+            <td>GPS、各種センサー</td>
+          </tr>
+          <tr>
+            <td>マーカーレス</td>
+            <td>平面検出・垂直平面検出</td>
+          </tr>
+          <tr>
+            <td>マーカー</td>
+            <td>画像検出・立体検出</td>
+          </tr>
+          <tr>
+            <td>その他</td>
+            <td>顔認識</td>
+          </tr>
+        </table>
+      </section>
+      <section>
+        <h2>ARの周辺技術</h2>
+        <table id="desc">
+          <tr>
+            <th>ライブラリ</th>
+            <th>概要</th>
+          </tr>
+          <tr>
+            <td>ARToolKit</td>
+            <td>奈良大学の加藤教授が生み出したCライブラリ<br>すべての礎</td>
+          </tr>
+          <tr>
+            <td>ARKit</td>
+            <td>iOS用ライブラリ</td>
+          </tr>
+          <tr>
+            <td>ARCore</td>
+            <td>Android用ライブラリ</td>
+          </tr>
+        </table>
+      </section>
+      <section>
+        <h2>今日はARKitを使うよ</h2>
+        <h4>（今日のためにiPhone買ったよ）</h4>
+      </section>
+      <section>
+        <h1>使うもの</h1>
+        <h3>Mac & XCode</h3>
+        <h3>iPhone（6s以上の端末）</h3>
+        <h3>AppleID</h3>
+        <h4>※アプリを配布したい場合はAppleDeveloperProgramに登録が必要</h4>
+      </section>
+      <section>
+        <h1>初心者編</h1>
+      </section>
+      <section>
+        <h1>XCodeプロジェクト作成</h1>
+        <h3>create⇒ARプロジェクト</h3>
+      </section>
+      <section>
+        <h1>ViewController.swiftの内部構造について</h1>
+        <h3>ViewDid*、ViewWill*系のライフサイクルだけ注視！</h3>
+      </section>
+      <section>
+        <h1>ARのsession構築部分</h1>
+        <h3>arworldtracking</h3>
+        <h3>session.run</h3>
+      </section>
+      <section>
+        <h1>画像認識</h1>
+        <h3>ARSceneの追加</h3>
+        <h3>imageAnchor追加</h3>
+      </section>
+      <section>
+        <h1>中級者編</h1>
+      </section>
+      <section>
+        <h1>3Dオブジェクトの追加</h1>
+        <h3>Scene Editor</h3>
+        <h3>ソースコードから</h3>
+      </section>
+      <section>
+        <h1>3Dアニメーション</h1>
+        <h3>SCNAction</h3>
+      </section>
+      <section>
+        <h1>上級者編</h1>
+      </section>
+      <section>
+        <h1>3Dオブジェクトの変形</h1>
+      </section>
+      <section>
+        <h1>3D座標の計算</h1>
+        <h3>画像認識したオブジェクトの横に出す worldPosition、boundingBox</h3>
+      </section>
+      <section>
+        <h1>軽くDEMO</h1>
+      </section>
+      <section>
+        <h1>以上</h1><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+      </section>
+    </article>
+    <script src="build/build.js"></script>
+  </body>
+</html>
