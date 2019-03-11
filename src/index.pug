@@ -25,7 +25,8 @@ html
         h4 お会社：<a href="https://www.is-tech.co.jp/">(株)情報戦略テクノロジー<image src="images/ist_logo.png" height="20" width="20"/>　　　 　　　　　　 　 　</a>
         h4 お所属：技術戦略推進部　　　　　　　　　　　　　　 　　 　
         h4 得意言語：JavaScript（React + Nodeでなんでも作るぞう）　
-        h4 <i class="fab fa-github">GitHub：</i>a-terarara　　　　　　　　　　　　　　　　　 　
+        h4 <br/><i class="fab fa-github">GitHub：</i>a-terarara　　　　　　　　　　　　　　　　　 　
+        h4 今回の資料：https://a-terarara.github.io/lightning-talks_arkit2
         <br/><br/><br/>　　　　　　　　　　　　　　　　　　
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
@@ -34,7 +35,7 @@ html
         ul.build.build-items
           li <h2>1. ARを触れるまで　　　</h2>
           li <h2>2. ARについて　　　　　</h2>
-          li <h2>3. DEMO(実機デバッグ)　</h2>
+          li <h2>3. DEMO(実機で)　　　　</h2>
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
@@ -47,10 +48,10 @@ html
 
       section
         h2 経歴
-        h3 <b>IST時代　　　　　　　　　　　　　　　　　</b>
+        h3 <b>今職時代　　　　　　　　　　　　　　　　　</b>
         h4 ・データ分析　　　　　　　　　　　　　　　　　　　　　
         h4 ・ほにゃららPayのWebAPI開発　　　　 　　　　　　　　
-        h4 ⇒JavaScriptとの出会い　　　　　　　　　　　　　
+        h4 ⇒JavaScriptとの出会いが始まる　　　　　　　　　
         h4 ・銀行APIの開発　　　　　　　　　　　　　　　　　　 　
         h4 ・ARアプリの開発　　　　　　　　　　　　　　　　 　 　
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
@@ -66,26 +67,30 @@ html
       section
         h1 開発体制<br/>
         ul.build.build-items
-          li <h2>わたし</h2>
-          li <h2>ネイティブばりばりの3D未経験者</h2>
-          li <h2>以上</h2>
+          li <h2>わたし　　　　　　　　　　</h2>
+          li <h2>ネイティブ上級な3D未経験者</h2>
+          li <h2>　　　　　　　　　　　以上</h2>
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
         img(src="images/shoshinsya.jpg" height="400" width="500")
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
-        h2 そんな3D初心者が３ヵ月でARをマスターするお話
+        h2 そんな3D初心者が３ヵ月でARをそれなりに扱うお話
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
         h1 ARについて<br><br>
         h3 拡張現実（Augmented Reality）
         h3 現実世界をコンピューティングで拡張する技術
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
         h2 カメラ使っていたら大体AR
         img(src="images/mapping.jpg" height="150" width="230")
         img(src="images/pokego.jpg" height="150" width="230")
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
         h2 ARの主要技術
@@ -105,6 +110,7 @@ html
           tr
             td その他
             td 顔認識
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       
       section
         h2 ARの周辺技術
@@ -121,63 +127,105 @@ html
           tr
             td ARCore
             td Android用ライブラリ
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+
+      section
+        h2 ARの周辺技術（番外編）
+        table#desc
+          tr
+            th ライブラリ
+            th 概要
+          tr
+            td Unity
+            td 結局ARKit、ARCoreを呼ぶ必要がある
+          tr
+            td その他
+            td PokemonGoやテクテクテクテクは独自の<br>ライブラリを作っている（と思われる）<br>例：ARKitだと電車内では使えないなど
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
         h2 今日はARKitを使うよ
         h4 （今日のためにiPhone買ったよ）
+        h4 <br><br><br><br>（Macは家内に拒否されたよ）
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
-        h1 使うもの
-        h3 Mac & XCode
-        h3 iPhone（6s以上の端末）
-        h3 AppleID
+        h1 用意するもの
+        h3 Mac & XCode　　　　　　　　　　　　　　　　　
+        h3 iPhone（6s以上の端末）　　　　　　　　　　　　
+        h3 AppleID　　　　　　　　　　　　　　　　　　 　
         h4 ※アプリを配布したい場合はAppleDeveloperProgramに登録が必要
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       
       section
-        h1 初心者編
+        h2 初心者編
+        h3 基礎知識が無くても何となくで出来るレベル
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
         
       section
-        h1 XCodeプロジェクト作成
-        h3 create⇒ARプロジェクト
+        h2 初心者編：ARするの巻
+        ul#left
+          li XCodeプロジェクト作成
+          li create ⇒ Augmented Reality App
+        img(src="images/create_project.png" height="220" width="300")
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
-        h1 ViewController.swiftの内部構造について
-        h3 ViewDid*、ViewWill*系のライフサイクルだけ注視！
-      
+        h2 初心者編：ARするの巻
+        h3 この時点でビルドすると目の前に飛行機の3Dオブジェクトが登場するようになります。
+        img(src="images/plane_initial.jpg" height="220" width="150")
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+        
       section
-        h1 ARのsession構築部分
-        h3 arworldtracking
-        h3 session.run
-
-      section
-        h1 画像認識
+        h2 初心者編：画像認識するの巻
+        h3 画像認識
         h3 ARSceneの追加
         h3 imageAnchor追加
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+      
+      section
+        h2 番外編
+        h3 ViewController.swiftのライフサイクル
+        h3 ViewDid*、ViewWill*系のライフサイクルだけ注視！
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       
       section
         h1 中級者編
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
         
       section
         h1 3Dオブジェクトの追加
         h3 Scene Editor
         h3 ソースコードから
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+
+      section
+        h3 ARのsession構築部分
+        h3 arworldtracking
+        h3 session.run
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
         h1 3Dアニメーション
         h3 SCNAction
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
         h1 上級者編
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       
       section
         h1 3Dオブジェクトの変形
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
         h1 3D座標の計算
         h3 画像認識したオブジェクトの横に出す worldPosition、boundingBox
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
         h1 軽くDEMO
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
         h1 以上
