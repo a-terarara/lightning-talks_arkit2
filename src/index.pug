@@ -52,7 +52,7 @@ html
         h4 1年目：データ分析　　　　　　　　　　　　　　　　　　
         h4 2年目：ほにゃららPayのWebAPI開発　　 　　　　　　　
         h4 ⇒JavaScriptとの出会いが始まる　　　　　　　
-        h4 2年半目：銀行APIの開発　　　　　　　　　　　　　　 　
+        h4 2.5年目：銀行APIの開発　　　　　　　　　　　　　　 　
         h4 3年目：ARアプリの開発　　　　　　　　　　　　　 　 　
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
@@ -87,7 +87,7 @@ html
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
-        h2 カメラ使っていたら大体AR
+        h2 スマホでカメラ使っていたら大体AR
         img(src="images/mapping.jpg" height="150" width="230")
         img(src="images/pokego.jpg" height="150" width="230")
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
@@ -139,8 +139,11 @@ html
             td Unity
             td 結局ARKit、ARCoreを呼ぶ必要がある
           tr
+            td AR.js
+            td jerome etienneが作ったOSS<br>ARToolKitとThree.jsとか使っている<br>凄い
+          tr
             td その他
-            td PokemonGoやテクテクテクテクは独自の<br>ライブラリを作っている（と思われる）<br>例：ARKitだと電車内では使えないなど
+            td PokemonGoやテクテクテクテクは独自の<br>ライブラリを作っている（と思われる）<br>違い：電車内での動作など
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
@@ -159,38 +162,61 @@ html
       
       section
         h2 初心者編
-        h3 基礎知識が無くても何となくで出来るレベル
+        h3 基礎知識が無くてもセンスで出来るレベル
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
         
       section
         h2 初心者編：ARするの巻
-        ul#left
-          li XCodeプロジェクト作成
-          li create ⇒ Augmented Reality App
+        h3 XCodeプロジェクト作成　　　　　　　　　　
+        h3 Create ⇒ Augmented Reality App　　　　　　
         img(src="images/create_project.png" height="220" width="300")
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
         h2 初心者編：ARするの巻
-        h3 この時点でビルドすると目の前に飛行機の3Dオブジェクトが登場するようになります。
+        h3 ビルドすると目の前に飛行機の3Dオブジェクトが登場するようになります。
         img(src="images/plane_initial.jpg" height="220" width="150")
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
         
       section
         h2 初心者編：画像認識するの巻
-        h3 画像認識
-        h3 ARSceneの追加
-        h3 imageAnchor追加
+        h3 ARSceneを追加する
+        table#desc
+          tr
+            td AssetsにAR ResourceGroupを追加<image src="images/ar_resourcegroup_add.png" height="150" width="200" />
+            td Drag&Drop、sizeを設定<image src="images/ar_reference_image.png" height="110" width="300" />※実はjpegでないと読み込めません
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       
       section
-        h2 番外編
+        h2 初心者編：画像認識するの巻
+        h3 imageAnchor追加
+        pre
+          code.language-javascript.
+            override func viewWillAppear(_ animated: Bool) {
+              let configuration = ARWorldTrackingConfiguration()
+              // マーカー画像の読み込み
+              let images = ARReferenceImage.referenceImages(
+                inGroupNamed: "AR Resources", bundle: nil)
+              configuration.detectionImages = images
+              
+              sceneView.session.run(configuration)
+            }
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+      
+      section
+        h2 初心者編：画像認識するの巻
+        h3 ビルドすると画像の真上に3Dオブジェクトが表示されるようになります
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+
+      section
+        h2 番外編：ライフサイクル編
         h3 ViewController.swiftのライフサイクル
         h3 ViewDid*、ViewWill*系のライフサイクルだけ注視！
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       
       section
-        h1 中級者編
+        h2 中級者編
+        h3 ARKitのドキュメントを読めば出来るレベル
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
         
       section
@@ -211,7 +237,8 @@ html
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
-        h1 上級者編
+        h2 上級者編
+        h3 座標変換を学ぶレベル
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       
       section
