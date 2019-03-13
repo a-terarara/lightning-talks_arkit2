@@ -209,18 +209,33 @@ html
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
-        h2 番外編：ライフサイクル編
-        h3 ViewController.swiftのライフサイクル
-        h3 ViewDid*、ViewWill*系のライフサイクルだけ注視！
+        h2 番外編：ライフサイクル
+        pre
+          code.language-javascript.
+            // 【画面描画前】3Dオブジェクトをロード
+            override func viewDidLoad() {
+              super.viewDidLoad()
+              sceneView.scene = SCNScene(named: "ship.scn", inDirectory: "models.scnassets/ship")!
+            }
+            // 【画面描画直後】ARのセッションを開始
+            override func viewWillAppear(_ animated: Bool) {
+                super.viewWillAppear(animated)
+                sceneView.session.run(ARWorldTrackingConfiguration())
+            }
+            // 【画面のアンロード】ARのセッションを停止
+            override func viewWillDisappear(_ animated: Bool) {
+                super.viewWillDisappear(animated)
+                sceneView.session.pause()
+            }
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       
       section
         h2 中級者編
-        h3 ARKitのドキュメントを読めば出来るレベル
+        h3 ARKit、SceneKitのドキュメントを読めば出来るレベル
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
         
       section
-        h1 3Dオブジェクトの追加
+        h2 中級者編：3Dオブジェクトの追加
         h3 Scene Editor
         h3 ソースコードから
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
