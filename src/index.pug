@@ -180,7 +180,14 @@ html
         
       section
         h2 初心者編：画像認識するの巻
-        h3 ARSceneを追加する
+        h3 画像認識するとは？　　　　　　　　　　　　　　
+        h3 1. 画像を登録する　　　　　　　　　　　　　　　
+        h3 2. カメラが画像を認識したらアクションする　　　<br>（今回は飛行機を出します）　　　　　　　　　
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+      
+      section
+        h2 初心者編：画像認識するの巻
+        h3 画像を登録する
         table#desc
           tr
             td AssetsにAR ResourceGroupを追加<image src="images/ar_resourcegroup_add.png" height="150" width="200" />
@@ -189,7 +196,7 @@ html
       
       section
         h2 初心者編：画像認識するの巻
-        h3 imageAnchor追加
+        h3 画像を認識する
         pre
           code.language-javascript.
             override func viewWillAppear(_ animated: Bool) {
@@ -205,6 +212,21 @@ html
       
       section
         h2 初心者編：画像認識するの巻
+        h3 アクションする
+        pre
+          code.language-javascript.
+             if let anchor = anchor as? ARImageAnchor {
+               let ship = SCNScene(
+                 named: "ship.scn", inDirectory: "models.scnassets/ship"
+               )!
+               for node in ship.rootNode.children {
+                 sceneView.scene.rootNode.addChildNode(node)
+               }
+             }
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+      
+      section
+        h2 初心者編：画像認識するの巻
         h3 ビルドすると画像の真上に3Dオブジェクトが表示されるようになります
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
@@ -215,7 +237,10 @@ html
             // 【画面描画前】3Dオブジェクトをロード
             override func viewDidLoad() {
               super.viewDidLoad()
-              sceneView.scene = SCNScene(named: "ship.scn", inDirectory: "models.scnassets/ship")!
+              sceneView.scene = SCNScene(
+                named: "ship.scn",
+                inDirectory: "models.scnassets/ship"
+              )!
             }
             // 【画面描画直後】ARのセッションを開始
             override func viewWillAppear(_ animated: Bool) {
@@ -231,19 +256,33 @@ html
       
       section
         h2 中級者編
-        h3 ARKit、SceneKitのドキュメントを読めば出来るレベル
+        h3 ARKit、SceneKitの<br>ドキュメントを読めば出来るレベル
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
         
       section
-        h2 中級者編：3Dオブジェクトの追加
+        h2 中級者編：3D作るの巻
         h3 Scene Editor
         h3 ソースコードから
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
-        h3 ARのsession構築部分
-        h3 arworldtracking
-        h3 session.run
+        h2 中級者編：検出設定周り
+        table#desc
+          tr
+            th コンフィギュレーション
+            th 概要
+          tr
+            td ARWorldTrackingConfiguration
+            td 現実世界（全部）をトラッキング
+          tr
+            td ARImageTrackingConfiguration
+            td 2D画像だけトラッキング
+          tr
+            td ARObjectScanningConfiguration
+            td 3Dオブジェクトだけトラッキング
+          tr
+            td ARFaceTrackingConfiguration
+            td 顔だけトラッキング
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
@@ -255,20 +294,32 @@ html
         h2 上級者編
         h3 座標変換を学ぶレベル
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
-      
-      section
-        h1 3Dオブジェクトの変形
-        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
         h1 3D座標の計算
-        h3 画像認識したオブジェクトの横に出す worldPosition、boundingBox
+        h3 船の横に人間を置きたい！
+        h3 船の座標から船の横幅に向けて平行移動する！
+        h3 SCNMatrix4Translate(node.worldTransform, node.boundingBox.max.x, node.boundingBox.max.y*10, node.boundingBox.max.z)
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+      
+      section
+        h2 上級者編：3Dオブジェクトを動的に変形
+        h3 geometryを差し替えると別物に変わる
+
+      section
+        h2 番外編：3Dオブジェクトの高度なアニメーション
+        h3 作成した3Dオブジェクトに骨・関節にあたるボーンを埋め込むことで高度なアニメーションが生成可能
+        h3 <a href="https://qiita.com/noby111/items/d2115b58b3f98958e576">qiitaの褌</a> を借りる
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
-        h1 軽くDEMO
+        h1 DEMO
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
+      section
+        h2 まとめ
+        h3 実は初級者編でやった内容がARの全て　　　　　<br>中級者編以降の技術はSceneKitという3Dデザイン系
+        h3 ≒ ARは簡単！
       section
         h1 以上
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
