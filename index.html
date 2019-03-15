@@ -191,25 +191,27 @@
   let images = ARReferenceImage.referenceImages(
     inGroupNamed: "AR Resources", bundle: nil)
   configuration.detectionImages = images
-  
+  configuration.planeDetection = [.vertical, .horizontal]
+
   sceneView.session.run(configuration)
 }</code></pre><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       </section>
       <section>
         <h2>初心者編：画像認識するの巻</h2>
-        <h3>アクションする</h3>
+        <h3>認識した位置に飛行機を出す</h3>
         <pre><code class="language-javascript">if let anchor = anchor as? ARImageAnchor {
   let ship = SCNScene(
-    named: "ship.scn", inDirectory: "models.scnassets/ship"
+    named: "ship.scn", inDirectory: "art.scnassets"
   )!
-  for node in ship.rootNode.children {
+  for node in ship.rootNode.childNodes {
+    node.simdTransform = anchor.transform
     sceneView.scene.rootNode.addChildNode(node)
   }
 }</code></pre><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       </section>
       <section>
         <h2>初心者編：画像認識するの巻</h2>
-        <h3>ビルドすると画像の真上に3Dオブジェクトが表示されるようになります</h3><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+        <h3>ビルドすると画像の真上に3Dオブジェクトが表示されるようになります</h3><img src="images/image_on_ship.png" height="220" width="150"><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       </section>
       <section>
         <h2>番外編：ライフサイクル</h2>
@@ -234,12 +236,21 @@ override func viewWillDisappear(_ animated: Bool) {
       </section>
       <section>
         <h2>中級者編</h2>
-        <h3>ARKit、SceneKitの<br>ドキュメントを読めば出来るレベル</h3><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+        <h3>公式ドキュメントを読めば出来るレベル</h3><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       </section>
       <section>
         <h2>中級者編：3D作るの巻</h2>
-        <h3>Scene Editor</h3>
-        <h3>ソースコードから</h3><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+        <h3>Scene Editor</h3><img src="images/scene_editor.png" height="220" width="300"><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+      </section>
+      <section>
+        <h2>中級者編：3D作るの巻</h2>
+        <h3>ソースコードから</h3>
+        <pre><code class="language-javascript">let box = SCNBox(
+  width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0)
+box.firstMaterial?.diffuse.contents =
+  UIColor(red: 0, green: 0, blue: 1.0, alpha: 1.0)
+let node = SCNNode(geometry: box)
+sceneView.scene.rootNode.addChildNode(node)</code></pre><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       </section>
       <section>
         <h2>中級者編：検出設定周り</h2>
@@ -267,22 +278,53 @@ override func viewWillDisappear(_ animated: Bool) {
         </table><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       </section>
       <section>
-        <h1>3Dアニメーション</h1>
-        <h3>SCNAction</h3><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+        <h2>中級者編：3Dアニメーション</h2>
+        <h3>直線的なアニメーションはSCNActionを使う</h3>
+        <table id="desc">
+          <tr>
+            <th>種類</th>
+            <th>メソッド</th>
+          </tr>
+          <tr>
+            <td>移動</td>
+            <td>SCNAction.move(by: SCNVector3(1,1,1), duration: 1)<br>SCNAction.move(to: SCNVector3(1,1,1), duration: 1)</td>
+          </tr>
+          <tr>
+            <td>回転</td>
+            <td>SCNAction.rotateBy(x: 1, y: 1, z: 1), duration: 1)<br>SCNAction.rotateTo(x: 1, y: 1, z: 1), duration: 1)</td>
+          </tr>
+          <tr>
+            <td>拡大</td>
+            <td>SCNAction.scale(by: 1, duration: 1)<br>SCNAction.scale(to: 1 duration: 1)</td>
+          </tr>
+        </table><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       </section>
       <section>
         <h2>上級者編</h2>
-        <h3>座標変換を学ぶレベル</h3><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+        <h3>3D数学を学ぶレベル</h3><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       </section>
       <section>
         <h1>3D座標の計算</h1>
         <h3>船の横に人間を置きたい！</h3>
         <h3>船の座標から船の横幅に向けて平行移動する！</h3>
-        <h3>SCNMatrix4Translate(node.worldTransform, node.boundingBox.max.x, node.boundingBox.max.y*10, node.boundingBox.max.z)</h3><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+        <pre><code class="language-javascript">SCNMatrix4Translate(
+  node.worldTransform,
+  node.boundingBox.max.x,
+  0,
+  0
+)</code></pre><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       </section>
       <section>
         <h2>上級者編：3Dオブジェクトを動的に変形</h2>
         <h3>geometryを差し替えると別物に変わる</h3>
+        <pre><code class="language-javascript">let redMaterial = SCNMaterial()
+redMaterial.diffuse.contents = 
+  UIColor(red:1, green:0, blue: 0, alpha: 1)
+let blueMaterial = SCNMaterial()
+blueMaterial.diffuse.contents = 
+  UIColor(red: 0, green: 0, blue: 1.0, alpha: 1.0)
+box.materials = [redMaterial, blueMaterial]
+</code></pre>
       </section>
       <section>
         <h2>番外編：3Dオブジェクトの高度なアニメーション</h2>
@@ -294,7 +336,7 @@ override func viewWillDisappear(_ animated: Bool) {
       </section>
       <section>
         <h2>まとめ</h2>
-        <h3>実は初級者編でやった内容がARの全て　　　　　<br>中級者編以降の技術はSceneKitという3Dデザイン系</h3>
+        <h3>実は初級者編でやった内容がARの全て　 　　 　　<br>中級者編以降の技術はSceneKitという3Dデザイン系</h3>
         <h3>≒ ARは簡単！</h3>
       </section>
       <section>
