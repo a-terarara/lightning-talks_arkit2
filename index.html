@@ -168,7 +168,13 @@
       </section>
       <section>
         <h2>初心者編：画像認識するの巻</h2>
-        <h3>ARSceneを追加する</h3>
+        <h3>画像認識するとは？　　　　　　　　　　　　　　</h3>
+        <h3>1. 画像を登録する　　　　　　　　　　　　　　　</h3>
+        <h3>2. カメラが画像を認識したらアクションする　　　<br>（今回は飛行機を出します）　　　　　　　　　</h3><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+      </section>
+      <section>
+        <h2>初心者編：画像認識するの巻</h2>
+        <h3>画像を登録する</h3>
         <table id="desc">
           <tr>
             <td>AssetsにAR ResourceGroupを追加<image src="images/ar_resourcegroup_add.png" height="150" width="200" /></td>
@@ -178,7 +184,7 @@
       </section>
       <section>
         <h2>初心者編：画像認識するの巻</h2>
-        <h3>imageAnchor追加</h3>
+        <h3>画像を認識する</h3>
         <pre><code class="language-javascript">override func viewWillAppear(_ animated: Bool) {
   let configuration = ARWorldTrackingConfiguration()
   // マーカー画像の読み込み
@@ -191,26 +197,74 @@
       </section>
       <section>
         <h2>初心者編：画像認識するの巻</h2>
+        <h3>アクションする</h3>
+        <pre><code class="language-javascript">if let anchor = anchor as? ARImageAnchor {
+  let ship = SCNScene(
+    named: "ship.scn", inDirectory: "models.scnassets/ship"
+  )!
+  for node in ship.rootNode.children {
+    sceneView.scene.rootNode.addChildNode(node)
+  }
+}</code></pre><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+      </section>
+      <section>
+        <h2>初心者編：画像認識するの巻</h2>
         <h3>ビルドすると画像の真上に3Dオブジェクトが表示されるようになります</h3><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       </section>
       <section>
-        <h2>番外編：ライフサイクル編</h2>
-        <h3>ViewController.swiftのライフサイクル</h3>
-        <h3>ViewDid*、ViewWill*系のライフサイクルだけ注視！</h3><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+        <h2>番外編：ライフサイクル</h2>
+        <pre><code class="language-javascript">// 【画面描画前】3Dオブジェクトをロード
+override func viewDidLoad() {
+  super.viewDidLoad()
+  sceneView.scene = SCNScene(
+    named: "ship.scn",
+    inDirectory: "models.scnassets/ship"
+  )!
+}
+// 【画面描画直後】ARのセッションを開始
+override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    sceneView.session.run(ARWorldTrackingConfiguration())
+}
+// 【画面のアンロード】ARのセッションを停止
+override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    sceneView.session.pause()
+}</code></pre><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       </section>
       <section>
         <h2>中級者編</h2>
-        <h3>ARKitのドキュメントを読めば出来るレベル</h3><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+        <h3>ARKit、SceneKitの<br>ドキュメントを読めば出来るレベル</h3><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       </section>
       <section>
-        <h1>3Dオブジェクトの追加</h1>
+        <h2>中級者編：3D作るの巻</h2>
         <h3>Scene Editor</h3>
         <h3>ソースコードから</h3><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       </section>
       <section>
-        <h3>ARのsession構築部分</h3>
-        <h3>arworldtracking</h3>
-        <h3>session.run</h3><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+        <h2>中級者編：検出設定周り</h2>
+        <table id="desc">
+          <tr>
+            <th>コンフィギュレーション</th>
+            <th>概要</th>
+          </tr>
+          <tr>
+            <td>ARWorldTrackingConfiguration</td>
+            <td>現実世界（全部）をトラッキング</td>
+          </tr>
+          <tr>
+            <td>ARImageTrackingConfiguration</td>
+            <td>2D画像だけトラッキング</td>
+          </tr>
+          <tr>
+            <td>ARObjectScanningConfiguration</td>
+            <td>3Dオブジェクトだけトラッキング</td>
+          </tr>
+          <tr>
+            <td>ARFaceTrackingConfiguration</td>
+            <td>顔だけトラッキング</td>
+          </tr>
+        </table><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       </section>
       <section>
         <h1>3Dアニメーション</h1>
@@ -221,14 +275,27 @@
         <h3>座標変換を学ぶレベル</h3><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       </section>
       <section>
-        <h1>3Dオブジェクトの変形</h1><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
-      </section>
-      <section>
         <h1>3D座標の計算</h1>
-        <h3>画像認識したオブジェクトの横に出す worldPosition、boundingBox</h3><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+        <h3>船の横に人間を置きたい！</h3>
+        <h3>船の座標から船の横幅に向けて平行移動する！</h3>
+        <h3>SCNMatrix4Translate(node.worldTransform, node.boundingBox.max.x, node.boundingBox.max.y*10, node.boundingBox.max.z)</h3><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       </section>
       <section>
-        <h1>軽くDEMO</h1><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+        <h2>上級者編：3Dオブジェクトを動的に変形</h2>
+        <h3>geometryを差し替えると別物に変わる</h3>
+      </section>
+      <section>
+        <h2>番外編：3Dオブジェクトの高度なアニメーション</h2>
+        <h3>作成した3Dオブジェクトに骨・関節にあたるボーンを埋め込むことで高度なアニメーションが生成可能</h3>
+        <h3><a href="https://qiita.com/noby111/items/d2115b58b3f98958e576">qiitaの褌</a> を借りる</h3><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+      </section>
+      <section>
+        <h1>DEMO</h1><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+      </section>
+      <section>
+        <h2>まとめ</h2>
+        <h3>実は初級者編でやった内容がARの全て　　　　　<br>中級者編以降の技術はSceneKitという3Dデザイン系</h3>
+        <h3>≒ ARは簡単！</h3>
       </section>
       <section>
         <h1>以上</h1><div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
