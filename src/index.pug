@@ -205,29 +205,32 @@ html
               let images = ARReferenceImage.referenceImages(
                 inGroupNamed: "AR Resources", bundle: nil)
               configuration.detectionImages = images
-              
+              configuration.planeDetection = [.vertical, .horizontal]
+       
               sceneView.session.run(configuration)
             }
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       
       section
         h2 初心者編：画像認識するの巻
-        h3 アクションする
+        h3 認識した位置に飛行機を出す
         pre
           code.language-javascript.
-             if let anchor = anchor as? ARImageAnchor {
-               let ship = SCNScene(
-                 named: "ship.scn", inDirectory: "models.scnassets/ship"
-               )!
-               for node in ship.rootNode.children {
-                 sceneView.scene.rootNode.addChildNode(node)
-               }
-             }
+            if let anchor = anchor as? ARImageAnchor {
+              let ship = SCNScene(
+                named: "ship.scn", inDirectory: "art.scnassets"
+              )!
+              for node in ship.rootNode.childNodes {
+                node.simdTransform = anchor.transform
+                sceneView.scene.rootNode.addChildNode(node)
+              }
+            }
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       
       section
         h2 初心者編：画像認識するの巻
         h3 ビルドすると画像の真上に3Dオブジェクトが表示されるようになります
+        img(src="images/image_on_ship.png" height="220" width="150")
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
@@ -256,13 +259,26 @@ html
       
       section
         h2 中級者編
-        h3 ARKit、SceneKitの<br>ドキュメントを読めば出来るレベル
+        h3 公式ドキュメントを読めば出来るレベル
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
         
       section
         h2 中級者編：3D作るの巻
         h3 Scene Editor
+        img(src="images/scene_editor.png" height="220" width="300")
+        <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
+
+      section
+        h2 中級者編：3D作るの巻
         h3 ソースコードから
+        pre
+          code.language-javascript.
+            let box = SCNBox(
+              width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0)
+            box.firstMaterial?.diffuse.contents =
+              UIColor(red: 0, green: 0, blue: 1.0, alpha: 1.0)
+            let node = SCNNode(geometry: box)
+            sceneView.scene.rootNode.addChildNode(node)
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
@@ -286,25 +302,54 @@ html
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
-        h1 3Dアニメーション
-        h3 SCNAction
+        h2 中級者編：3Dアニメーション
+        h3 直線的なアニメーションはSCNActionを使う
+        table#desc
+          tr
+            th 種類
+            th メソッド
+          tr
+            td 移動
+            td SCNAction.move(by: SCNVector3(1,1,1), duration: 1)<br>SCNAction.move(to: SCNVector3(1,1,1), duration: 1)
+          tr
+            td 回転
+            td SCNAction.rotateBy(x: 1, y: 1, z: 1), duration: 1)<br>SCNAction.rotateTo(x: 1, y: 1, z: 1), duration: 1)
+          tr
+            td 拡大
+            td SCNAction.scale(by: 1, duration: 1)<br>SCNAction.scale(to: 1 duration: 1)
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
         h2 上級者編
-        h3 座標変換を学ぶレベル
+        h3 3D数学を学ぶレベル
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
 
       section
         h1 3D座標の計算
         h3 船の横に人間を置きたい！
         h3 船の座標から船の横幅に向けて平行移動する！
-        h3 SCNMatrix4Translate(node.worldTransform, node.boundingBox.max.x, node.boundingBox.max.y*10, node.boundingBox.max.z)
+        pre
+          code.language-javascript.
+            SCNMatrix4Translate(
+              node.worldTransform,
+              node.boundingBox.max.x,
+              0,
+              0
+            )
         <div style="position: absolute;bottom: 10px;left: 10px"><a href="#1"><i class="far fa-hand-point-left"></i></a></div>
       
       section
         h2 上級者編：3Dオブジェクトを動的に変形
         h3 geometryを差し替えると別物に変わる
+        pre
+          code.language-javascript.
+            let redMaterial = SCNMaterial()
+            redMaterial.diffuse.contents = 
+              UIColor(red:1, green:0, blue: 0, alpha: 1)
+            let blueMaterial = SCNMaterial()
+            blueMaterial.diffuse.contents = 
+              UIColor(red: 0, green: 0, blue: 1.0, alpha: 1.0)
+            box.materials = [redMaterial, blueMaterial]
 
       section
         h2 番外編：3Dオブジェクトの高度なアニメーション
@@ -318,7 +363,7 @@ html
 
       section
         h2 まとめ
-        h3 実は初級者編でやった内容がARの全て　　　　　<br>中級者編以降の技術はSceneKitという3Dデザイン系
+        h3 実は初級者編でやった内容がARの全て　 　　 　　<br>中級者編以降の技術はSceneKitという3Dデザイン系
         h3 ≒ ARは簡単！
       section
         h1 以上
